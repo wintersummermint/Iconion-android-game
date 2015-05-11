@@ -1,0 +1,22 @@
+<div class="row flip-in" ng-repeat="row in grid track by $index">
+
+	<div class="col text-center" ng-repeat="tile in row track by $index"  ng-animate-children>
+
+		<div class="tile-container" ng-class="{flipped: tile.flipped, matched: tile.matched}" ng-click="flipTile(tile)">
+			<div class="flipper">
+				<div class="front">
+			 		<button class="button button-custom active {{'button-'+settings.theme}}">
+						<i class="icon ion-ionic"></i>
+					</button>
+				</div>
+				<div class="back">
+			 		<button class="button button-custom {{'button-'+settings.theme}}">
+						<i class="icon" ng-class="tile.title"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,21 @@
+<div id="finale-modal" class="modal" ng-controller="FinaleCtrl">
+
+	<ion-header-bar class="bar bar-header" ng-class="'bar-'+settings.theme">
+		<h1 class="title">Game Over</h1>
+		<button class="button button-clear" ng-click="closeInfo()">Close</button>
+	</ion-header-bar>
+
+	<ion-content has-header="true">
+
+		<div class="row">
+			<div class="col text-center padding">
+			<h2>Congratulations,<br>you matched all the icons!</h2>
+				<button class="button button-large button-balanced" ng-click="restartBtn()">Play Again</button>
+
+				<button class="button button-large button-positive" ng-click="homeBtn()">Main Menu</button>
+			</div>
+		</div>
+
+	</ion-content>
+
+</div>

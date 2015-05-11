@@ -1,0 +1,38 @@
+<ion-view title="ionic memory">
+
+	<ion-nav-buttons></ion-nav-buttons>
+
+	<ion-content id="home" class="has-header">
+
+		<div class="home-menu">
+		    <div class="home-menu-button col" ui-sref="game-easy">
+		    	<div class="home-menu-tiles col button" ng-class="'button-'+settings.theme">
+			    	<div class="row" ng-repeat="i in [1,2,3]">
+				    	<div class="col tileBox" ng-repeat="i in [1,2]"></div>
+			    	</div>
+			    	<h3>Easy</h3>
+		    	</div>
+		    </div>
+
+		    <div class="home-menu-button col" ui-sref="game-difficult">
+		    	<div class="home-menu-tiles col button" ng-class="'button-'+settings.theme">
+			    	<div class="row" ng-repeat="i in [1,2,3,4,5,6]">
+				    	<div class="col tileBox" ng-repeat="i in [1,2,3]"></div>
+			    	</div>
+			    	<h3>Difficult</h3>
+		    	</div>
+		    </div>
+
+		    <div class="home-menu-button col" ui-sref="game-hard">
+		    	<div class="home-menu-tiles col button" ng-class="'button-'+settings.theme">
+			    	<div class="row" ng-repeat="i in [1,2,3,4,5,6]">
+				    	<div class="col tileBox" ng-repeat="i in [1,2,3,4]"></div>
+			    	</div>
+			    	<h3>Hard</h3>
+		    	</div>
+		    </div>
+		</div>
+
+	</ion-content>
+
+</ion-view>

@@ -1,0 +1,32 @@
+<div id="settings-modal" class="modal" ng-controller="SettingsCtrl">
+
+	<ion-header-bar class="bar bar-header" ng-class="'bar-'+settings.theme">
+		<h1 class="title">Settings</h1>
+		<button class="button button-clear" ng-click="closeSettings()">Close</button>
+	</ion-header-bar>
+
+	<ion-content has-header="true">
+		<div class="padding">
+
+			<div class="list">
+				<div class="item item-divider"> 
+					Themes
+					<span class="item-note">
+						active theme:
+						<span ng-class="settings.theme">{{settings.theme}}</span>
+					</span>
+				</div>
+
+				<ion-radio ng-repeat="theme in themes" ng-model="settings.theme" ng-value="theme.value" ng-change="serverSideChange(theme)" ng-class="theme.value">{{ theme.text }}</ion-radio>
+
+<!-- 				<div class="item item-divider"> 
+					Options
+				</div>
+				<ion-toggle ng-model="timerMode" toggle-class="{{'toggle-'+settings.theme}}">Timer</ion-toggle>
+ -->				
+			</div>
+
+		</div>
+	</ion-content>
+
+</div>

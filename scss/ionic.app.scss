@@ -1,0 +1,316 @@
+// Override ionic variables
+// -------------------------------
+$light:                           #fff !default;
+$stable:                          #E5E1CC !default;
+$positive:                        #4C6995 !default;
+$calm:                            #74A8AD !default;
+$balanced:                        #6A8F60 !default;
+$energized:                       #B19B67 !default;
+$assertive:                       #BB4B3C !default;
+$royal:                           #797494 !default;
+$dark:                            #444 !default;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+// Include Animations
+@import "animations";
+
+// Memory Game styles
+// -------------------------------
+
+// Variables
+// -------------------------------
+$button-custom-height:                   34px !default;
+// Tile Icon Sizes
+$tile-icon-sm: 40px;
+$tile-icon-md: 60px;
+$tile-icon-lg: 70px;
+$tile-icon-xl: 90px;
+
+//  Loader Spinner
+.spinner svg {
+  width: 100px;
+  height: 100px;
+  // stroke: #444;
+  // fill: #444;
+}
+
+// Page/States styles
+// -------------------------------
+#home {
+  h2 {
+    margin-top: 10px;
+  }
+  h3 {
+    color: #FFF;
+    margin-top: 0;
+  }
+}
+
+#home .scroll {
+  height: 100% !important;
+  @include display-flex;
+  @include flex-direction(column);
+  @include align-items(stretch);
+  @include justify-content(center);
+}
+
+.home-heading {
+  height: 50px;
+}
+
+.home-menu {
+  @include display-flex;
+  @include flex;
+  @include flex-direction(column);
+  @include align-items(stretch);
+
+  >.col {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    @include display-flex;
+    @include flex;
+    @include align-items(stretch);
+  }
+}
+
+.home-menu-tiles {
+  @include display-flex;
+  @include flex;
+  @include flex-direction(column);
+  @include align-items(stretch);
+
+  > .row {
+    @include flex;
+    @include align-items(stretch);
+  }
+}
+.tileBox {
+  background: #FFF;
+  padding: 5px;
+  margin: 7px;
+}
+
+
+// Memory-Game Tile Grid
+// -------------------------------
+.memory-game .row {
+  padding: 5px;
+}
+
+.button-custom {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  clear: both;
+
+  &:after {
+    clear: both;
+  }
+}
+
+//  Set default icon font sizes
+.flipper .button {
+  min-height: $button-custom-height + 5px;
+  font-size: 100%;
+  .icon:before,
+  &.icon:before {
+    font-size: $tile-icon-sm;
+  }
+}
+//  Set default icon font sizes for Easy game view
+.memory-game-easy .button {
+  .icon:before,
+  &.icon:before {
+    font-size: $tile-icon-md;
+  }
+}
+
+// Tile
+/* entire container, keeps perspective */
+.tile-container {
+  perspective: 1000;
+  cursor: pointer;
+  position: relative;
+  line-height: 0;
+}
+/* idle tile  - front face showing */
+.tile-container .flipper {
+  -webkit-transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+  @include backface-visibility(hidden);
+  @include transform-origin(100%, 50%);
+  @include animation(flip $flip-duration);
+  @include animation-fill-mode(forwards);
+}
+
+/* flip the tile - show back face */
+.tile-container.flipped .flipper {
+  @include transform-origin(50%, 50%);
+  @include animation(flipOver $flip-duration);
+  @include animation-fill-mode(forwards);
+}
+/* Matched tile - scale & fadeOut the tile */
+.tile-container.matched .flipper {
+  @include transform-origin(50%, 50%);
+  @include animation(flipOut $flipOut-duration);
+  @include animation-fill-mode(forwards);
+}
+
+.tile-container, .front, .back {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+/* flip speed goes here */
+.flipper {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+
+  position: relative;
+}
+/* hide back of tile during swap */
+.front, .back {
+  @include backface-visibility(hidden);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* front tile, placed above back */
+.front {
+  z-index: 2;
+}
+/* back, initially hidden tile */
+.back {
+  -webkit-transform: rotateX(180deg);
+  -webkit-transform-style: preserve-3d;
+  transform: rotateX(180deg);
+  transform-style: preserve-3d;
+}
+
+// -------------------------------
+//  Responsive styles
+// -------------------------------
+//  Game Grid
+.memory-game-easy .row {
+  height: 33%;
+}
+.memory-game-hard .row, .memory-game-difficult .row{
+  height: 17%;
+}
+.memory-game .col, .memory-game .button-block, .tile-icon {
+  height: 100%;
+}
+
+//  Home State
+// portrait mode
+@media only screen and (orientation : landscape) 
+{
+  .home-menu {
+    @include flex-direction(row);
+    > div {
+      @include flex-direction(row);
+    }
+  }
+}
+
+@media only screen and (min-device-width : 320px) 
+{
+  .home-menu {
+    >.col {
+      width: 35%;
+      padding: 5px;
+    }
+  }
+  .tileBox {
+    background: #FFF;
+    padding: 2px;
+    margin: 4px;
+  }
+
+  .memory-game .button {
+    .icon:before,
+    &.icon:before {
+      font-size: $tile-icon-sm;
+    }
+  }
+  .memory-game-easy .button {
+    .icon:before,
+    &.icon:before {
+      font-size: $tile-icon-md;
+    }
+  }  
+}
+
+@media only screen and (min-device-width : 568px) 
+{
+  .memory-game .button {
+    .icon:before,
+    &.icon:before {
+      font-size: $tile-icon-sm;
+    }
+  }
+  .memory-game-easy .button {
+    .icon:before,
+    &.icon:before {
+      font-size: $tile-icon-md;
+    }
+  }
+}
+@media only screen and (min-device-width : 768px) 
+{
+  .home-menu {
+    >.col {
+      width: 37%;
+      padding: 20px;
+    }
+  }
+  .memory-game .button {
+    .icon:before,
+    &.icon:before {
+      font-size: $tile-icon-md;
+    }
+  }
+  .memory-game-easy .button {
+    .icon:before,
+    &.icon:before {
+      font-size: $tile-icon-lg;
+    }
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (orientation : landscape) 
+{
+  .home-menu {
+    >.col {
+      width: 50%;
+      margin: 40px auto 140px auto;
+      padding: 30px;
+    }
+  }
+}
+
+@media only screen and (min-device-width : 1024px) 
+{
+  .memory-game .button {
+    .icon:before,
+    &.icon:before {
+      font-size: $tile-icon-lg;
+    }
+  }
+  .memory-game-easy .button {
+    .icon:before,
+    &.icon:before {
+      font-size: $tile-icon-xl;
+    }
+  }
+}

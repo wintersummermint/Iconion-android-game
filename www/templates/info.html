@@ -1,0 +1,58 @@
+<div id="info-modal" class="modal" ng-controller="InfoCtrl">
+
+	<ion-header-bar class="bar bar-header" ng-class="'bar-'+settings.theme">
+		<h1 class="title">Info</h1>
+		<button class="button button-clear" ng-click="closeInfo()">Close</button>
+	</ion-header-bar>
+
+	<ion-content has-header="true">
+		<div class="padding">
+
+			<div class="list">
+
+				<div class="item item-divider"> 
+					ionic memory
+				</div>
+				<a class="item item-icon-left" href="#">
+					<i class="icon ion-social-github"></i>
+					Version #1.0
+				</a>
+
+				<div class="item item-divider"> 
+					Developer
+				</div>
+				<div class="item"> 
+					<p>Sean Grant</p>
+				</div>
+				<a class="item item-icon-left" href="http://www.seancgrant.com/">
+					<i class="icon ion-home"></i>
+					www.seancgrant.com
+				</a>
+
+				<a class="item item-icon-left" href="http://www.twitter.com/seancgrant">
+					<i class="icon ion-social-twitter"></i>
+					@seancgrant
+				</a>
+
+				<div class="item item-divider"> 
+					Inspired by AngularJS-MemoryGame:
+				</div>
+				<span class="item">Copyright 2013 Asiance Korea ltd.<br>
+				http://www.asiance.com/<br></span>
+				<a class="item item-icon-left" href="https://github.com/Asiance/AngularJS-MemoryGame">
+					<i class="icon ion-social-github"></i>
+					AngularJS-MemoryGame
+				</a>
+				<div class="item item-divider"> 
+					License
+				</div>
+				<div class="item"> 
+					<p>MIT</p>
+				</div>
+
+			</div>
+
+		</div>
+	</ion-content>
+
+</div>

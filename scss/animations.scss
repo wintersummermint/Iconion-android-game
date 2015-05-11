@@ -1,0 +1,94 @@
+// -------------------------------
+//  Tile animations
+// -------------------------------
+$flip-duration: 1s;
+$flipIn-duration: 1.3s;
+$flipOut-duration: 0.8s;
+$stagger-delay: 0.2s;
+
+// Flip
+@-webkit-keyframes flip {
+  0%{-webkit-transform: rotateX(180deg)}
+  60%{-webkit-transform: rotateX(-20deg)}
+  100%{-webkit-transform: rotateX(0deg)}
+}
+@-moz-keyframes flip {
+  0%{-moz-transform: rotateX(180deg)}
+  60%{-moz-transform: rotateX(-20deg)}
+  100%{-moz-transform: rotateX(0deg)}
+}
+@keyframes flip {
+  0%{transform: rotateX(180deg)}
+  60%{transform: rotateX(-20deg)}
+  100%{transform: rotateX(0deg)}
+}
+// Flip In
+@-webkit-keyframes flipIn {
+  0%{-webkit-transform: rotateX(90deg)}
+  75%{-webkit-transform: rotateX(-20deg); opacity:1}
+  100%{-webkit-transform: rotateX(0deg); opacity:1}
+}
+@-moz-keyframes flipIn {
+  0%{-moz-transform: rotateX(90deg)}
+  75%{-moz-transform: rotateX(-20deg); opacity:1}
+  100%{-moz-transform: rotateX(0deg); opacity:1}
+}
+@keyframes flipIn {
+  0%{transform: rotateX(90deg)}
+  75%{transform: rotateX(-20deg); opacity:1}
+  100%{transform: rotateX(0deg); opacity:1}
+}
+// Flip Over
+@-webkit-keyframes flipOver {
+  0%{-webkit-transform: rotateX(0deg)}
+  60%{-webkit-transform: rotateX(200deg)}
+  100%{-webkit-transform: rotateX(180deg)}
+}
+@-moz-keyframes flipOver {
+  0%{-moz-transform: rotateX(0deg)}
+  60%{-moz-transform: rotateX(200deg)}
+  100%{-moz-transform: rotateX(180deg)}
+}
+@keyframes flipOver {
+  0%{transform: rotateX(0deg)}
+  60%{transform: rotateX(200deg)}
+  100%{transform: rotateX(180deg)}
+}
+
+// Flip Out
+@-webkit-keyframes flipOut {
+  0% { -webkit-transform: rotateX(180deg); opacity: 1; }
+  25% { -webkit-transform: rotateX(180deg) scale(1.15); opacity: 1; }
+  100% { -webkit-transform: rotateX(180deg) scale(0.5); opacity: 0; }
+}
+@-moz-keyframes flipOut {
+  0% { -moz-transform: rotateX(180deg); opacity: 1; }
+  25% { -moz-transform: rotateX(180deg) scale(1.15); opacity: 1; }
+  100% { -moz-transform: rotateX(180deg) scale(0.5); opacity: 0; }
+}
+@keyframes flipOut {
+  0% { transform: rotateX(180deg); opacity: 1; }
+  25% { transform: rotateX(180deg) scale(1.15); opacity: 1; }
+  100% { transform: rotateX(180deg) scale(0.5); opacity: 0; }
+}
+
+.flip-in {
+  position: relative;
+}
+.flip-in.ng-enter-stagger,
+.flip-in.ng-leave-stagger,
+.flip-in.ng-move-stagger {
+  /* ms will be applied between each sucessive enter operation */ 
+  -webkit-animation-delay: $stagger-delay;
+  animation-delay: $stagger-delay;
+
+  /* this is here to avoid accidental CSS inheritance */
+  @include animation-duration(0);
+}
+.flip-in.ng-enter, 
+.flip-in.ng-leave, 
+.flip-in.ng-move {
+  opacity: 0;
+  @include animation-fill-mode(forwards);
+  @include animation(flipIn $flipIn-duration);
+}
