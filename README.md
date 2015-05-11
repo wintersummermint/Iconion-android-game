@@ -6,7 +6,7 @@ Memory game built in Ionic, Angular and Cordova
 
 1. [Installation](#installation)
 2. [Features](#features)
-3. [Preview](#preview)
+3. [Demo](#demo)
 4. [TODO](#todo)
 5. [License](#license)
 
@@ -40,10 +40,6 @@ ionic run ios
 **[Back to top](#table-of-contents)**
 
 
-## Demo
-
-**[Back to top](#table-of-contents)**
-
 ## Features (wip)
 * local db (JSON)
 * local storage
@@ -52,8 +48,8 @@ ionic run ios
 
 **[Back to top](#table-of-contents)**
 
-## Preview
-an online preview of this app is available at http://silo.app.krur.com/
+## Demo
+an online demo of this app is available at 
 
 ## TODO
 * timed game mode
