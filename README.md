@@ -12,9 +12,8 @@ Memory game built in Ionic, Angular and Cordova
 
 
 ### Installation
-To use this project, first clone the repo, then run:
+To use this project, first clone the repo, then run in local repo:
 ```bash
-$ cd ionic-todo
 $ sudo npm install -g cordova ionic gulp
 $ npm install
 $ gulp install
