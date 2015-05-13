@@ -12,10 +12,12 @@ Memory game built in Ionic, Angular and Cordova
 
 
 ### Installation
-Use local npm packages
-
-```
-npm install
+To use this project, first clone the repo, then run:
+```bash
+$ cd ionic-todo
+$ sudo npm install -g cordova ionic gulp
+$ npm install
+$ gulp install
 ```
 
 View in browser
@@ -24,19 +26,6 @@ View in browser
 ionic serve
 ```
 
-View/Install on android
-
-```
-ionic platform add android
-ionic run android
-```
-
-View/Install on iOS
-
-```
-ionic platform add ios
-ionic run ios
-```
 **[Back to top](#table-of-contents)**
 
 
@@ -45,15 +34,20 @@ ionic run ios
 * local storage
 * select your game's color theme
 * ionic modals and popups
+* event broadcasting
 
 **[Back to top](#table-of-contents)**
 
 ## Demo
-an online demo of this app is available at 
+an online demo of this app is available at http://segra.github.io/ionic-memory-game/
 
 ## TODO
 * timed game mode
 * game statistics
+* add sound effects
+* refactor ‘theme’ implementation to reduce watchers
+* improve local storage offline syncing
+* create a splash screen and icon
 
 **[Back to top](#table-of-contents)**
 
