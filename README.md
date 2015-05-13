@@ -52,7 +52,7 @@ an online demo of this app is available at http://segra.github.io/ionic-memory-g
 
 ## License
 
-Ionic is licensed under the MIT Open Source license. For more information, see the LICENSE file in this repository.
+Licensed under the MIT Open Source license. For more information, see the LICENSE file in this repository.
 
 **[Back to top](#table-of-contents)**
 
