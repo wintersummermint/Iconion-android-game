@@ -1,6 +1,7 @@
 # ionic Memory Game
 
 Memory game built in Ionic, Angular and Cordova
+![ionic-memory-game screenshots](https://raw.github.com/segra/ionic-memory-game/gh-pages/images/screenshots.png)
 
 ## Table of Contents
 
