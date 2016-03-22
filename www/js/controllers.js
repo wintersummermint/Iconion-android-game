@@ -74,7 +74,10 @@
 		$scope.settings = Settings.getSettings();
 		$scope.theme = Settings.get('theme');
 	}])
-
+	.controller('StartCtrl', ['$scope', 'Settings', function($scope, Settings) {
+		$scope.settings = Settings.getSettings();
+		$scope.theme = Settings.get('theme');
+	}])
 	.controller('GameCtrl', ['$scope', '$state', '$ionicPopup', 'icons', 'Settings', function($scope, $state, $ionicPopup, icons, Settings) {
 		//	Retrieve tile icons and save to $scope & local settings
 		$scope.icons = icons;

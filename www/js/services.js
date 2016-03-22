@@ -4,7 +4,7 @@
   angular.module('memory.services', [])
 
   .constant('DEFAULT_SETTINGS', {
-    'TEMP_THEME': 'dark',
+    'TEMP_THEME': 'Royal',
     'LOCAL_STORAGE': 'settings'
   })
 
@@ -25,7 +25,7 @@
 
     var obj = {
       getSettings: function() {
-        return _settings;
+        return {"TEMP_THEME":"Calm","LOCAL_STORAGE":"settings","gameOn":"false","theme":"calm"};
       },
       // Save the settings to localStorage
       save: function() {

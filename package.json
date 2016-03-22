@@ -1,7 +1,7 @@
 {
-  "name": "memoryApp",
+  "name": "Iconion",
   "version": "1.0.0",
-  "description": "memoryApp: An Ionic project",
+  "description": "A simple Memory Game",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",

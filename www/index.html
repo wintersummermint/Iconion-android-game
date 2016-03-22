@@ -6,6 +6,8 @@
     <title>ionic Memory Game</title>
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/ionicons.min.css" rel="stylesheet">
    
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -24,12 +26,11 @@
 
     <ion-nav-bar class="nav-title-slide-ios7" ng-class="&apos;bar-&apos;+settings.theme">
       <div class="buttons">
-        <button class="button button-clear icon ion-home" ng-click="checkGame()"></button>
+        <button class="button button-clear icon ion-backspace-outline" ng-click="checkGame()"></button>
       </div>
-      <h1 class="title">ionic memory</h1>
+      <h1 class="title"></h1>
      <div class="buttons">
         <button class="button button-clear icon ion-information-circled" ng-click="showInfo()"></button>
-        <button class="button button-clear icon ion-gear-b" ng-click="showSettings()"></button>
       </div>
     </ion-nav-bar>
 

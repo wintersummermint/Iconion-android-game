@@ -1,36 +1,35 @@
-<ion-view title="ionic memory">
+<ion-view>
 
 	<ion-nav-buttons></ion-nav-buttons>
 
-	<ion-content id="home" class="has-header">
-
+	<ion-content id="home">
+	<div class="row responsive-sm">
+	  <div class="col">
+	  	    <div class="text-center">
+	  	    	<h1 class="splash-title"> Iconion </h1>
+				<img src="img/menu.png" height="200px" class="bounce splash-img">
+	  	    	
+	  	    	<p class="splash-subtitle">A Memory Game</p>
+	  	    </div>
+	  </div>
+	</div>
 		<div class="home-menu">
-		    <div class="home-menu-button col" ui-sref="game-easy">
-		    	<div class="home-menu-tiles col button" ng-class="'button-'+settings.theme">
-			    	<div class="row" ng-repeat="i in [1,2,3]">
-				    	<div class="col tileBox" ng-repeat="i in [1,2]"></div>
-			    	</div>
-			    	<h3>Easy</h3>
-		    	</div>
-		    </div>
-
-		    <div class="home-menu-button col" ui-sref="game-difficult">
-		    	<div class="home-menu-tiles col button" ng-class="'button-'+settings.theme">
-			    	<div class="row" ng-repeat="i in [1,2,3,4,5,6]">
-				    	<div class="col tileBox" ng-repeat="i in [1,2,3]"></div>
-			    	</div>
-			    	<h3>Difficult</h3>
-		    	</div>
-		    </div>
-
-		    <div class="home-menu-button col" ui-sref="game-hard">
-		    	<div class="home-menu-tiles col button" ng-class="'button-'+settings.theme">
-			    	<div class="row" ng-repeat="i in [1,2,3,4,5,6]">
-				    	<div class="col tileBox" ng-repeat="i in [1,2,3,4]"></div>
-			    	</div>
-			    	<h3>Hard</h3>
-		    	</div>
-		    </div>
+			<div class="row">
+				<div class="col col-center">
+					<div class="text-center">
+						<button class="button button-calm start-choices" ui-sref="game-easy">
+							<h3>Easy</h3>
+						</button>
+						<button class="button button-calm start-choices" ui-sref="game-difficult">
+						 	<h3>Medium</h3>
+						</button>
+						<button class="button button-calm start-choices" ui-sref="game-hard">
+						 	<h3>Hard</h3>
+						</button>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 
 	</ion-content>
