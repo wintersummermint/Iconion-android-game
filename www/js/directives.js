@@ -15,7 +15,9 @@
         link: function(scope, elements, attr) {
 
           var isPairFlipped = false;
-
+          scope.$on('initGame', function() {
+            scope.init();
+          });
           scope.init = function() {
             Settings.set('gameOn',false);
             //  Init a master set of tiles from Factory
@@ -30,6 +32,7 @@
           };
 
           scope.start = function() {
+            scope.$emit('moveProgressBar');
             // Check coherence between numbers of rows*columns, and number of available tiles
             if (scope.tiles.length * 2 < attr.rows * attr.columns) {
               scope.$emit('memoryGameIconErrorEvent');
@@ -44,6 +47,7 @@
             scope.firstPick = scope.secondPick = undefined;
             scope.unmatchedPairs = scope.tilePairs;
           };
+
           /**
            * Define Tile object
            * @param {string} title Filename of the icon associated to the tile
@@ -93,7 +97,7 @@
                     if (scope.unmatchedPairs === 0) {
                       $timeout(function() {
                         scope.$emit('memoryGameCompletedEvent');
-                      }, 1000);
+                      }, 800);
                     }
                   } else {
                     scope.secondPick = tile;

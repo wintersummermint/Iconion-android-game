@@ -30,7 +30,7 @@
 					$scope.infoModal.show();
 				}, {
 					// The animation we want to use for the modal entrance
-					animation: 'slide-in-up'
+					animation: 'fade-in'
 				});
 			} else {
 				$scope.infoModal.show();
@@ -78,25 +78,72 @@
 		$scope.settings = Settings.getSettings();
 		$scope.theme = Settings.get('theme');
 	}])
-	.controller('GameCtrl', ['$scope', '$state', '$ionicPopup', 'icons', 'Settings', function($scope, $state, $ionicPopup, icons, Settings) {
+	.controller('GameCtrl', ['$scope', '$state', '$ionicPopup','$interval','$timeout','icons','Settings', function($scope, $state, $ionicPopup,$interval,$timeout, icons, Settings) {
 		//	Retrieve tile icons and save to $scope & local settings
 		$scope.icons = icons;
 		Settings.set('icons', icons);
 
 	  	$scope.settings = Settings.getSettings();
+	  	$scope.timeLeft = 0;
+	  	$scope.score = 0;
+	  	// on page load...
+	  	
+	  	// // on browser resize...
+	  	// $(window).resize(function() {
+	  	//     moveProgressBar();
+	  	// });
 
+	  	// SIGNATURE PROGRESS
+	  	$scope.$on('moveProgressBar', function() {
+	  		$scope.runningTime = $interval(function() {
+            	$scope.timeLeft += 1;
+				
+		  	    var getPercent = ($scope.timeLeft / 60);
+		  	    var getProgressWrapWidth = $('.progress-wrap').width();
+		  	    var progressTotal = getPercent * getProgressWrapWidth;
+		  	    console.log($scope.timeLeft);
+		  	    var animationLength = 1000;
+		  	    if ($scope.timeLeft == 60) {
+		  	    	$scope.$emit('memoryGameOverEvent');
+		  	    	$interval.cancel($scope.runningTime);
+		  	    	$('.progress-bar').stop().animate({
+		  	    	    left: progressTotal
+		  	    	}, animationLength);
+		  	    };
+		  	    // on page load, animate percentage bar to data percentage length
+		  	    // .stop() used to prevent animation queueing
+		  	    $('.progress-bar').stop().animate({
+		  	        left: progressTotal
+		  	    }, animationLength);
+          }, 1000);
+	  	});
 		// Listeners for game events triggered by angular-memory-game
 		$scope.$on('memoryGameUnmatchedPairEvent', function() {
 			$scope.message = 'Try again!';
+			
 			console.log($scope.message);
 		});
 		$scope.$on('memoryGameMatchedPairEvent', function() {
 			$scope.message = 'Good match!';
 			console.log($scope.message);
+			$scope.timeLeft -= 2;
+			$scope.score += 1;
+			console.log('score :' + $scope.score);
+
 		});
 		$scope.$on('memoryGameCompletedEvent', function() {
 			$scope.message = 'Success!';
-			$scope.showFinale();
+			// $scope.showFinale();
+			$timeout( function(){
+              $scope.$broadcast('initGame');
+            }, 700);
+			console.log($scope.message);
+			$interval.cancel($scope.runningTime);
+		});
+		$scope.$on('memoryGameOverEvent', function() {
+			$scope.message = 'Time is up! : Game Over <br> Score :'+ $scope.score;
+			$scope.showGameOver($scope.score);
+			$interval.cancel($scope.runningTime);
 			console.log($scope.message);
 		});
 		$scope.$on('memoryGameIconErrorEvent', function() {
@@ -105,7 +152,7 @@
 			console.log($scope.message);
 		});
 
-		/*** Game Over popup ***/
+		/*** Winner popup ***/
 		$scope.showFinale = function() {
 			var finalePopup = $ionicPopup.confirm({
 				title: '<h2>Congratulations!</h2><h4>You matched all the tiles!</h4>',
@@ -126,6 +173,26 @@
 			});
 		};
 
+			/*** Game over popup ***/
+			$scope.showGameOver = function(score) {
+				var finalePopup = $ionicPopup.confirm({
+					title: '<h2>Time is up!</h2><h4>Score : '+ score +'</h4>',
+					cancelText: 'Main Menu',
+					cancelType: 'button-dark',
+					okText: 'Play Again',
+					okType: 'button-balanced',
+		  			scope: $scope,
+				});
+				finalePopup.then(function(res) {
+					if(res) {
+						console.log('Play Again');
+						$state.go($state.current, {}, { reload: true });
+					} else {
+						console.log('Main Menu');
+						$state.go('home');
+					}
+				});
+			};
 		/*** Error popup ***/
 		$scope.showIconError = function() {
 			var errorPopup = $ionicPopup.confirm({

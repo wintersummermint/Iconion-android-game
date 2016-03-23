@@ -68,6 +68,32 @@ a {
 	color:#004A65 ;
 	text-decoration: none;
 }
+.wrap-progress {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+
+}
+.progress {
+  border-radius: 5px;
+  width: 100%;
+  height: 10px;
+}
+
+.progress-wrap {
+  background: #B2B0B6;
+/*   margin: 20px 0; */
+  overflow: hidden;
+  position: relative;
+}
+.progress-wrap .progress-bar {
+  background: #00ACC1;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+
 @-moz-keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     -moz-transform: translateY(0);
