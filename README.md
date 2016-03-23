@@ -1,7 +1,6 @@
-# ionic Memory Game
+# Iconion - Android/IOS
 
-Memory game built in Ionic, Angular and Cordova
-![ionic-memory-game screenshots](https://raw.github.com/segra/ionic-memory-game/gh-pages/images/screenshots.png)
+A Simple Memory game built in Ionic 1.X, Angular 1.X and Cordova
 
 ## Table of Contents
 
@@ -38,16 +37,10 @@ ionic serve
 
 **[Back to top](#table-of-contents)**
 
-## Demo
-an online demo of this app is available at http://segra.github.io/ionic-memory-game/
-
 ## TODO
-* timed game mode
-* game statistics
 * add sound effects
-* refactor ‘theme’ implementation to reduce watchers
+* game statistics
 * improve local storage offline syncing
-* create a splash screen and icon
 
 **[Back to top](#table-of-contents)**
 
