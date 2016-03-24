@@ -6,9 +6,8 @@ A Simple Memory game built in Ionic 1.X, Angular 1.X and Cordova
 
 1. [Installation](#installation)
 2. [Features](#features)
-3. [Demo](#demo)
-4. [TODO](#todo)
-5. [License](#license)
+3. [TODO](#todo)
+4. [License](#license)
 
 
 ### Installation
@@ -38,9 +37,12 @@ ionic serve
 **[Back to top](#table-of-contents)**
 
 ## TODO
-* add sound effects
-* game statistics
-* improve local storage offline syncing
+* Fix High score missing on 0
+* Further debugging
+* Timer resets on next stage
+* Add sound effects
+* Game statistics
+* Improve local storage offline syncing
 
 **[Back to top](#table-of-contents)**
 
