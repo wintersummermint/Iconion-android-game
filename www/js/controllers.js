@@ -46,6 +46,7 @@
 				$scope.showConfirm();
 			} else {
 				$state.go('home');
+				$rootScope.stopInterval = true;
 			}
 		};
 		/*** Game Quit Confirmation popup ***/
@@ -106,6 +107,7 @@
 	  		$scope.runningTime = $interval(function() {
 	  			if ($rootScope.stopInterval == true) {
 	  				$interval.cancel($scope.runningTime);
+	  				console.log('stopped the Interval');
 	  			};
             	$scope.timeLeft += 1;
 				
