@@ -7,9 +7,10 @@
 	  <div class="col">
 	  	    <div class="text-center">
 	  	    	<h1 class="splash-title"> Iconion </h1>
-				<img src="img/menu.png" height="200px" class="bounce splash-img">
+				<img src="img/menu.png" class="bounce splash-img">
 	  	    	
 	  	    	<p class="splash-subtitle">A Memory Game</p>
+	  	    	<p class="splash-highscore">High Score : <span ng-bind="homeHighScore"></span></p>
 	  	    </div>
 	  </div>
 	</div>
@@ -18,13 +19,13 @@
 				<div class="col col-center">
 					<div class="text-center">
 						<button class="button button-calm start-choices" ui-sref="game-easy">
-							<h3>Easy</h3>
+							<h3 class="OpenSans">Easy</h3>
 						</button>
 						<button class="button button-calm start-choices" ui-sref="game-difficult">
-						 	<h3>Medium</h3>
+						 	<h3 class="OpenSans">Medium</h3>
 						</button>
 						<button class="button button-calm start-choices" ui-sref="game-hard">
-						 	<h3>Hard</h3>
+						 	<h3 class="OpenSans">Hard</h3>
 						</button>
 					</div>
 				</div>

@@ -3,10 +3,11 @@
 
 	angular.module('memory.controllers', [])
 
-	.controller('AppCtrl', ['$scope', '$ionicModal', '$ionicPopup', '$state', 'Settings', function($scope, $ionicModal, $ionicPopup, $state, Settings) {
+	.controller('AppCtrl', ['$rootScope','$interval','$scope', '$ionicModal', '$ionicPopup', '$state', 'Settings', function($rootScope,$interval,$scope, $ionicModal, $ionicPopup, $state, Settings) {
 		Settings.set('gameOn','false');
 		$scope.settings = Settings.getSettings();
 		/*** Settings modal ***/
+		$rootScope.stopInterval = false;
 		$scope.showSettings = function() {
 			if(!$scope.settingsModal) {
 				// Load the modal from the given template URL
@@ -65,6 +66,8 @@
 				} else {
 					Settings.set('gameOn','false');
 					$state.go('home');
+					$rootScope.stopInterval = true;
+					$scope.$emit('moveProgressBar');
 				}
 			});
 		};
@@ -73,18 +76,19 @@
 	.controller('HomeCtrl', ['$scope', 'Settings', function($scope, Settings) {
 		$scope.settings = Settings.getSettings();
 		$scope.theme = Settings.get('theme');
+		$scope.homeHighScore = window.localStorage['HighScore'];
 	}])
 	.controller('StartCtrl', ['$scope', 'Settings', function($scope, Settings) {
 		$scope.settings = Settings.getSettings();
 		$scope.theme = Settings.get('theme');
 	}])
-	.controller('GameCtrl', ['$scope', '$state', '$ionicPopup','$interval','$timeout','icons','Settings', function($scope, $state, $ionicPopup,$interval,$timeout, icons, Settings) {
+	.controller('GameCtrl', ['$rootScope','$scope', '$state', '$ionicPopup','$interval','$timeout','icons','Settings', function($rootScope, $scope, $state, $ionicPopup,$interval,$timeout, icons, Settings) {
 		//	Retrieve tile icons and save to $scope & local settings
 		$scope.icons = icons;
 		Settings.set('icons', icons);
 
 	  	$scope.settings = Settings.getSettings();
-	  	$scope.timeLeft = 0;
+	  	
 	  	$scope.score = 0;
 	  	// on page load...
 	  	
@@ -95,7 +99,14 @@
 
 	  	// SIGNATURE PROGRESS
 	  	$scope.$on('moveProgressBar', function() {
+	  		$scope.timeLeft = 0;
+	  		$rootScope.stopInterval = false;
+	  		console.log($rootScope.stopInterval);
+	  		// $scope.runningTime();
 	  		$scope.runningTime = $interval(function() {
+	  			if ($rootScope.stopInterval == true) {
+	  				$interval.cancel($scope.runningTime);
+	  			};
             	$scope.timeLeft += 1;
 				
 		  	    var getPercent = ($scope.timeLeft / 60);
@@ -109,14 +120,19 @@
 		  	    	$('.progress-bar').stop().animate({
 		  	    	    left: progressTotal
 		  	    	}, animationLength);
-		  	    };
+		  	    } 
+
+
 		  	    // on page load, animate percentage bar to data percentage length
 		  	    // .stop() used to prevent animation queueing
 		  	    $('.progress-bar').stop().animate({
 		  	        left: progressTotal
 		  	    }, animationLength);
+		  	   
+
           }, 1000);
 	  	});
+
 		// Listeners for game events triggered by angular-memory-game
 		$scope.$on('memoryGameUnmatchedPairEvent', function() {
 			$scope.message = 'Try again!';
@@ -142,7 +158,17 @@
 		});
 		$scope.$on('memoryGameOverEvent', function() {
 			$scope.message = 'Time is up! : Game Over <br> Score :'+ $scope.score;
-			$scope.showGameOver($scope.score);
+
+			if (window.localStorage['HighScore'] > $scope.score) {
+				$scope.showGameOver($scope.score);
+			} else if (window.localStorage['HighScore'] < $scope.score){
+				window.localStorage['HighScore'] = $scope.score;
+				$scope.newHighScore(window.localStorage['HighScore']);
+			} else {
+				$scope.showGameOver($scope.score);
+				window.localStorage['HighScore'] = $scope.score;
+			}
+
 			$interval.cancel($scope.runningTime);
 			console.log($scope.message);
 		});
@@ -173,26 +199,47 @@
 			});
 		};
 
-			/*** Game over popup ***/
-			$scope.showGameOver = function(score) {
-				var finalePopup = $ionicPopup.confirm({
-					title: '<h2>Time is up!</h2><h4>Score : '+ score +'</h4>',
-					cancelText: 'Main Menu',
-					cancelType: 'button-dark',
-					okText: 'Play Again',
-					okType: 'button-balanced',
-		  			scope: $scope,
-				});
-				finalePopup.then(function(res) {
-					if(res) {
-						console.log('Play Again');
-						$state.go($state.current, {}, { reload: true });
-					} else {
-						console.log('Main Menu');
-						$state.go('home');
-					}
-				});
-			};
+		/*** Game over popup ***/
+		$scope.showGameOver = function(score) {
+			var finalePopup = $ionicPopup.confirm({
+				title: '<h2>Time is up!</h2><h4>Score : '+ score +'</h4>',
+				cancelText: 'Main Menu',
+				cancelType: 'button-dark',
+				okText: 'Play Again',
+				okType: 'button-balanced',
+	  			scope: $scope,
+			});
+			finalePopup.then(function(res) {
+				if(res) {
+					console.log('Play Again');
+					$state.go($state.current, {}, { reload: true });
+				} else {
+					console.log('Main Menu');
+					$state.go('home');
+				}
+			});
+		};
+
+		/*** High Score popup ***/
+		$scope.newHighScore = function(highScore) {
+			var finalePopup = $ionicPopup.confirm({
+				title: '<h2>Time is up!</h2><h4>New High Score! : '+ highScore +'</h4>',
+				cancelText: 'Main Menu',
+				cancelType: 'button-dark',
+				okText: 'Play Again',
+				okType: 'button-balanced',
+	  			scope: $scope,
+			});
+			finalePopup.then(function(res) {
+				if(res) {
+					console.log('Play Again');
+					$state.go($state.current, {}, { reload: true });
+				} else {
+					console.log('Main Menu');
+					$state.go('home');
+				}
+			});
+		};
 		/*** Error popup ***/
 		$scope.showIconError = function() {
 			var errorPopup = $ionicPopup.confirm({

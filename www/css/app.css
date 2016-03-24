@@ -23,27 +23,62 @@
     font-style: normal;
 
 }
+/* iphone 4 - 4s screens */
+@media(min-height: 480px) {
+  .splash-title {
+    font-family: 'open_sansbold';
+    color: #00ACC1;
+    margin-bottom: 10px;
+  }
+  .splash-subtitle {
+    font-family: 'open_sanslight';
+    color: #00ACC1;
+    font-size: 18px;
+  }
+  .splash-img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 80px;
+  }
+  .splash-highscore {
+    font-family: 'open_sansbold';
+    color: #D02D24;
+    font-size: 18px;
+    margin-bottom: 0px;
+  }
+}
 
-.splash-title {
-	font-family: 'open_sansbold';
-	color: #00ACC1;
-	margin-bottom: 10px;
-	padding-top: 5%;
-}
-.splash-subtitle {
-	font-family: 'open_sanslight';
-	color: #00ACC1;
-	font-size: 20px;
-	margin-top: 20px;
-}
-.splash-img {
-	margin-top: 10px;
-	margin-bottom: 10px;
+/* iphone 5 - 6s screens */
+@media(min-height: 568px) {
+  .splash-title {
+    font-family: 'open_sansbold';
+    color: #00ACC1;
+    margin-bottom: 10px;
+  }
+  .splash-subtitle {
+    font-family: 'open_sanslight';
+    color: #00ACC1;
+    font-size: 20px;
+  }
+  .splash-img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 150px;
+  }
+  .splash-highscore {
+    font-family: 'open_sansbold';
+    color: #D02D24;
+    font-size: 18px;
+    margin-bottom: 0px;
+  }
 }
 .text-center {
     text-align: center;
 }
 
+.OpenSans {
+  font-family: 'open_sansbold';
+}
 .start-choices {
 	width: 300px;
 	margin-top: 10px;
