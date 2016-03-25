@@ -18,6 +18,7 @@
           scope.$on('initGame', function() {
             scope.init();
           });
+
           scope.init = function() {
             Settings.set('gameOn',false);
             //  Init a master set of tiles from Factory
@@ -27,6 +28,37 @@
             //  Wait for nav-view to animate in before starting game
             $timeout( function(){
               scope.start();
+            }, 700);
+            
+          };
+
+          // Next set of tiles but continue progress 
+          scope.$on('initNext', function() {
+            scope.startNext();
+          });
+
+          scope.startNext = function() {
+            Settings.set('gameOn',false);
+            //  Init a master set of tiles from Factory
+            scope.tiles = Settings.get('icons');
+            scope.settings = Settings.getSettings();
+
+            //  Wait for nav-view to animate in before starting game
+            $timeout( function(){
+              // scope.$emit('moveProgressBar');
+              // Check coherence between numbers of rows*columns, and number of available tiles
+              if (scope.tiles.length * 2 < attr.rows * attr.columns) {
+                scope.$emit('memoryGameIconErrorEvent');
+              }
+              scope.tilePairs = attr.rows * attr.columns * 0.5;
+
+              //  Make a new deck based off of number of tilePairs
+              var deck = makeDeck(scope.tiles);
+
+              //  Create the grid of tiles
+              scope.grid = makeGrid(deck);
+              scope.firstPick = scope.secondPick = undefined;
+              scope.unmatchedPairs = scope.tilePairs;
             }, 700);
             
           };

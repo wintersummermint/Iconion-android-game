@@ -153,10 +153,10 @@
 			$scope.message = 'Success!';
 			// $scope.showFinale();
 			$timeout( function(){
-              $scope.$broadcast('initGame');
+              $scope.$broadcast('initNext');
             }, 700);
 			console.log($scope.message);
-			$interval.cancel($scope.runningTime);
+			// $interval.cancel($scope.runningTime);
 		});
 		$scope.$on('memoryGameOverEvent', function() {
 			$scope.message = 'Time is up! : Game Over <br> Score :'+ $scope.score;
