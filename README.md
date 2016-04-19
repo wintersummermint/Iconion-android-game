@@ -30,7 +30,6 @@ ionic serve
 ## Features (wip)
 * local db (JSON)
 * local storage
-* select your game's color theme
 * ionic modals and popups
 * event broadcasting
 
